@@ -1,101 +1,147 @@
+import { createClient } from "@/lib/supabase/server";
 import Image from "next/image";
+import Link from "next/link";
+import SignupForm from "@/components/SignupForm";
+import type { SiteContent } from "@/types/database";
 
-export default function Home() {
+export default async function HomePage() {
+  const supabase = await createClient();
+
+  const [{ data: heroData }, { data: signupData }] = await Promise.all([
+    supabase.from("site_content").select("key,value").in("key", ["hero_title", "hero_subtitle", "hero_cta"]),
+    supabase.from("site_content").select("key,value").in("key", ["signup_title", "signup_subtitle"]),
+  ]);
+
+  const content = Object.fromEntries(
+    [...((heroData as SiteContent[]) ?? []), ...((signupData as SiteContent[]) ?? [])].map((r) => [r.key, r.value ?? ""])
+  );
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      {/* Hero */}
+      <section className="relative min-h-screen flex items-center justify-center text-center px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-bg via-brand-bg/80 to-brand-bg" />
+        <div className="relative z-10 max-w-2xl mx-auto pt-20">
+          <Image
+            src="/images/logo-white.png"
+            alt="Lost and Found Wines"
+            width={300}
+            height={84}
+            className="mx-auto mb-12 object-contain"
+            priority
+          />
+          <p className="text-xs tracking-[0.3em] uppercase text-brand-muted mb-6">
+            New Zealand
+          </p>
+          <h1 className="text-3xl sm:text-4xl font-light tracking-[0.1em] uppercase text-white mb-6 leading-relaxed">
+            {content.hero_title || "A Journey of Discovery"}
+          </h1>
+          <p className="text-brand-text text-lg leading-relaxed mb-12 font-light">
+            {content.hero_subtitle ||
+              "Lost and Found is on a journey of DISCOVERY. We'd love you to join us."}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/shop"
+              className="border border-white text-white px-10 py-3 text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-brand-bg transition-colors duration-200"
+            >
+              {content.hero_cta || "Explore Our Wines"}
+            </Link>
+            <Link
+              href="/collections"
+              className="border border-brand-border text-brand-muted px-10 py-3 text-xs tracking-[0.2em] uppercase hover:border-white hover:text-white transition-colors duration-200"
+            >
+              Our Collections
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+
+        {/* Scroll hint */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <div className="w-px h-10 bg-brand-border" />
+        </div>
+      </section>
+
+      {/* Collections teaser */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs tracking-[0.3em] uppercase text-brand-muted text-center mb-4">Our Collections</p>
+          <h2 className="text-2xl font-light tracking-[0.1em] uppercase text-white text-center mb-16">
+            Two paths. One journey.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Link
+              href="/shop/origin"
+              className="group relative border border-brand-border p-10 hover:border-white transition-colors duration-300"
+            >
+              <div className="mb-6">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-brand-muted mb-3">Collection</p>
+                <h3 className="text-xl font-light tracking-[0.15em] uppercase text-white mb-4">Origin</h3>
+                <p className="text-brand-muted text-sm leading-relaxed">
+                  Return to the source. The Origin collection celebrates the distinctive terroir of New Zealand&apos;s great wine regions — Central Otago, Nelson, and beyond.
+                </p>
+              </div>
+              <span className="text-xs tracking-[0.15em] uppercase text-white border-b border-white pb-0.5 group-hover:tracking-[0.2em] transition-all duration-300">
+                Explore Origin →
+              </span>
+            </Link>
+
+            <Link
+              href="/shop/uncharted"
+              className="group relative border border-brand-border p-10 hover:border-white transition-colors duration-300"
+            >
+              <div className="mb-6">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-brand-muted mb-3">Collection</p>
+                <h3 className="text-xl font-light tracking-[0.15em] uppercase text-white mb-4">Uncharted</h3>
+                <p className="text-brand-muted text-sm leading-relaxed">
+                  Into new territory. The Uncharted collection pushes boundaries on Waiheke Island — an island of volcanic soils, maritime winds, and remarkable wines.
+                </p>
+              </div>
+              <span className="text-xs tracking-[0.15em] uppercase text-white border-b border-white pb-0.5 group-hover:tracking-[0.2em] transition-all duration-300">
+                Explore Uncharted →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Ad Astra spotlight */}
+      <section className="py-24 px-6 border-y border-brand-border">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-brand-muted mb-4">Special Release</p>
+          <h2 className="text-3xl font-light tracking-[0.15em] uppercase text-white mb-6">Ad Astra</h2>
+          <p className="text-brand-muted leading-relaxed mb-10">
+            To the stars. Our celebration wine — crafted in the traditional method, aged on lees, and released for the moments worth marking.
+          </p>
+          <Link
+            href="/wines/ad-astra-nv"
+            className="border border-white text-white px-10 py-3 text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-brand-bg transition-colors duration-200 inline-block"
+          >
+            Discover Ad Astra
+          </Link>
+        </div>
+      </section>
+
+      {/* Email signup */}
+      <section className="py-24 px-6">
+        <div className="max-w-lg mx-auto text-center">
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/images/logo-round.png"
+            alt=""
+            width={64}
+            height={64}
+            className="mx-auto mb-8 opacity-60 object-contain"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <h2 className="text-2xl font-light tracking-[0.15em] uppercase text-white mb-4">
+            {content.signup_title || "Get Lost With Us"}
+          </h2>
+          <p className="text-brand-muted text-sm mb-10 leading-relaxed">
+            {content.signup_subtitle ||
+              "Join our community of explorers. Be first to hear about new releases and discoveries."}
+          </p>
+          <SignupForm />
+        </div>
+      </section>
     </div>
   );
 }

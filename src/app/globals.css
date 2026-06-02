@@ -3,25 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0f;
+  --foreground: #e8e8f0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a3a;
+  border-radius: 3px;
 }
