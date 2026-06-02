@@ -43,7 +43,7 @@ export default async function TeamPage() {
                     <Image src={member.image_url} alt={member.name} fill className="object-cover" />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Image src="/images/logo-round.png" alt="" width={80} height={80} className="opacity-20 object-contain" />
+                      <Image src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1576118172230-796H1E52GYKJ6Z5S7TFJ/Logo_360_Whitex.png" alt="" width={80} height={80} className="opacity-20 object-contain" />
                     </div>
                   )}
                 </div>

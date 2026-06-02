@@ -16,7 +16,7 @@ export default function CheckoutSuccessPage() {
     <div className="min-h-screen flex items-center justify-center px-6 text-center">
       <div className="max-w-md">
         <Image
-          src="/images/logo-white.png"
+          src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1588209227733-Y5AIO011ZXJLMZQWARYA/LAF+LOGO+WHITE.png"
           alt="Lost and Found Wines"
           width={200}
           height={56}

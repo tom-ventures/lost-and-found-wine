@@ -23,7 +23,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-brand-bg via-brand-bg/80 to-brand-bg" />
         <div className="relative z-10 max-w-2xl mx-auto pt-20">
           <Image
-            src="/images/logo-white.png"
+            src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1588209227733-Y5AIO011ZXJLMZQWARYA/LAF+LOGO+WHITE.png"
             alt="Lost and Found Wines"
             width={300}
             height={84}
@@ -126,7 +126,7 @@ export default async function HomePage() {
       <section className="py-24 px-6">
         <div className="max-w-lg mx-auto text-center">
           <Image
-            src="/images/logo-round.png"
+            src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1576118172230-796H1E52GYKJ6Z5S7TFJ/Logo_360_Whitex.png"
             alt=""
             width={64}
             height={64}

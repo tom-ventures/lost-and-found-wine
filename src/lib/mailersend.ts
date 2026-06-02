@@ -9,7 +9,7 @@ export async function sendWelcomeEmail(to: string, firstName: string) {
     .setSubject("Welcome to Lost and Found Wines")
     .setHtml(`
       <div style="background:#0a0a0f;color:#e8e8f0;padding:40px;font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;">
-        <img src="https://www.lostandfoundwine.co.nz/images/logo-white.png" alt="Lost and Found Wines" style="height:60px;margin-bottom:32px;">
+        <img src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1588209227733-Y5AIO011ZXJLMZQWARYA/LAF+LOGO+WHITE.png" alt="Lost and Found Wines" style="height:60px;margin-bottom:32px;">
         <h1 style="font-size:24px;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;">Welcome, ${firstName}</h1>
         <p style="line-height:1.7;margin-bottom:24px;">You've joined us on a journey of discovery. Lost and Found is about more than wine — it's about the stories, the places, and the moments that make each bottle memorable.</p>
         <p style="line-height:1.7;margin-bottom:32px;">We'll be in touch with new releases, stories from the vineyard, and exclusive offers.</p>
@@ -43,7 +43,7 @@ export async function sendOrderConfirmation(
     .setSubject(`Order Confirmed — Lost and Found Wines #${orderId.slice(0, 8).toUpperCase()}`)
     .setHtml(`
       <div style="background:#0a0a0f;color:#e8e8f0;padding:40px;font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;">
-        <img src="https://www.lostandfoundwine.co.nz/images/logo-white.png" alt="Lost and Found Wines" style="height:60px;margin-bottom:32px;">
+        <img src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1588209227733-Y5AIO011ZXJLMZQWARYA/LAF+LOGO+WHITE.png" alt="Lost and Found Wines" style="height:60px;margin-bottom:32px;">
         <h1 style="font-size:24px;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Order Confirmed</h1>
         <p style="color:#6b6b80;margin-bottom:32px;">Order #${orderId.slice(0, 8).toUpperCase()}</p>
         <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
@@ -99,7 +99,7 @@ export async function sendNewsletter(
       .setSubject(subject)
       .setHtml(`
         <div style="background:#0a0a0f;color:#e8e8f0;padding:40px;font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;">
-          <img src="https://www.lostandfoundwine.co.nz/images/logo-white.png" alt="Lost and Found Wines" style="height:60px;margin-bottom:32px;">
+          <img src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1588209227733-Y5AIO011ZXJLMZQWARYA/LAF+LOGO+WHITE.png" alt="Lost and Found Wines" style="height:60px;margin-bottom:32px;">
           ${body}
           <p style="margin-top:48px;font-size:12px;color:#6b6b80;">Lost and Found Wines · New Zealand<br>Alcohol is supplied under Best Wine Company Ltd's license 007/OFF/42/2024<br><a href="https://www.lostandfoundwine.co.nz/unsubscribe?email=${sub.email}" style="color:#6b6b80;">Unsubscribe</a></p>
         </div>

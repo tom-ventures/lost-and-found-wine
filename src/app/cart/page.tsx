@@ -46,7 +46,7 @@ export default function CartPage() {
                     <Image src={item.image_url} alt={item.product_name} fill className="object-cover" />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Image src="/images/logo-round.png" alt="" width={32} height={32} className="opacity-20 object-contain" />
+                      <Image src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1576118172230-796H1E52GYKJ6Z5S7TFJ/Logo_360_Whitex.png" alt="" width={32} height={32} className="opacity-20 object-contain" />
                     </div>
                   )}
                 </div>

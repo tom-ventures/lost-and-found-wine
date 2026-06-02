@@ -28,7 +28,7 @@ export default function AgeGate() {
     <div className="fixed inset-0 z-[9999] bg-brand-bg flex flex-col items-center justify-center px-6">
       <div className="text-center max-w-md">
         <Image
-          src="/images/logo-white.png"
+          src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1588209227733-Y5AIO011ZXJLMZQWARYA/LAF+LOGO+WHITE.png"
           alt="Lost and Found Wines"
           width={280}
           height={80}

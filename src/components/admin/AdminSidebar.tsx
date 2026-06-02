@@ -48,7 +48,7 @@ export default function AdminSidebar() {
   const SidebarContent = () => (
     <>
       <div className="p-6 border-b border-brand-border">
-        <Image src="/images/logo-white.png" alt="Lost and Found Wines" width={120} height={34} className="object-contain" />
+        <Image src="https://images.squarespace-cdn.com/content/v1/5df198c9866fde1a352aa92e/1588209227733-Y5AIO011ZXJLMZQWARYA/LAF+LOGO+WHITE.png" alt="Lost and Found Wines" width={120} height={34} className="object-contain" />
         <p className="text-[10px] tracking-[0.2em] uppercase text-brand-muted mt-2">Admin</p>
       </div>
 
