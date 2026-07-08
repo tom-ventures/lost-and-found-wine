@@ -20,6 +20,14 @@ export default async function HomePage() {
     <div>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center text-center px-6">
+        <Image
+          src="https://jigmhnzhixerlqesqayq.supabase.co/storage/v1/object/public/wine-images/homepage-hero.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-bg via-brand-bg/80 to-brand-bg" />
         <div className="relative z-10 max-w-2xl mx-auto pt-20">
           <Image

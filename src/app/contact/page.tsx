@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 
 export default function ContactPage() {
@@ -27,7 +28,15 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="pt-32 pb-24 px-6">
+    <div className="relative pt-32 pb-24 px-6">
+      <Image
+        src="https://jigmhnzhixerlqesqayq.supabase.co/storage/v1/object/public/wine-images/contact-bg.webp"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover -z-10"
+      />
+      <div className="absolute inset-0 bg-brand-bg/85 -z-10" />
       <div className="max-w-xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-xs tracking-[0.3em] uppercase text-brand-muted mb-4">Lost and Found</p>
