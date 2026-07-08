@@ -12,6 +12,8 @@ const CONTENT_KEYS = [
   { key: "collections_intro", label: "Collections Intro", area: true },
   { key: "signup_title", label: "Signup Section Title", area: false },
   { key: "signup_subtitle", label: "Signup Section Subtitle", area: true },
+  { key: "hero_bg_image_url", label: "Homepage Hero Background Image URL", area: false },
+  { key: "contact_bg_image_url", label: "Contact Page Background Image URL", area: false },
 ];
 
 export default function AdminContentPage() {

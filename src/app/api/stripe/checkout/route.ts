@@ -58,6 +58,20 @@ export async function POST(req: NextRequest) {
 
     if (orderError || !order) throw orderError || new Error("Failed to create order");
 
+    // Keep the CRM customer list current
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (supabase as any)
+      .from("customers")
+      .upsert(
+        {
+          email: customer.email,
+          name: customer.name,
+          phone: customer.phone,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "email" }
+      );
+
     const lineItems = [
       ...items.map((item) => ({
         price_data: {

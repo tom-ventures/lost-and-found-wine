@@ -24,6 +24,15 @@ export async function POST(req: NextRequest) {
       throw error;
     }
 
+    // Keep the CRM customer list current
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (supabase as any)
+      .from("customers")
+      .upsert(
+        { email, name: [first_name, last_name].filter(Boolean).join(" ") },
+        { onConflict: "email", ignoreDuplicates: true }
+      );
+
     try {
       await sendWelcomeEmail(email, first_name);
     } catch (e) {

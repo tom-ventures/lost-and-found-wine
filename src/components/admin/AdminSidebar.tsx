@@ -16,17 +16,23 @@ import {
   LogOut,
   Menu,
   X,
+  BarChart3,
+  Contact,
+  UserCog,
 } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { href: "/admin/reports", label: "Reports", icon: BarChart3 },
+  { href: "/admin/crm", label: "CRM", icon: Contact },
   { href: "/admin/wines", label: "Wines", icon: Wine },
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag },
   { href: "/admin/subscribers", label: "Subscribers", icon: Mail },
   { href: "/admin/team", label: "Team", icon: Users },
   { href: "/admin/content", label: "Content", icon: FileText },
+  { href: "/admin/account", label: "Account", icon: UserCog },
 ];
 
 export default function AdminSidebar() {

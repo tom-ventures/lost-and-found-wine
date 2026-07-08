@@ -8,7 +8,7 @@ export default async function HomePage() {
   const supabase = await createClient();
 
   const [{ data: heroData }, { data: signupData }] = await Promise.all([
-    supabase.from("site_content").select("key,value").in("key", ["hero_title", "hero_subtitle", "hero_cta"]),
+    supabase.from("site_content").select("key,value").in("key", ["hero_title", "hero_subtitle", "hero_cta", "hero_bg_image_url"]),
     supabase.from("site_content").select("key,value").in("key", ["signup_title", "signup_subtitle"]),
   ]);
 
@@ -21,7 +21,7 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center text-center px-6">
         <Image
-          src="https://jigmhnzhixerlqesqayq.supabase.co/storage/v1/object/public/wine-images/homepage-hero.webp"
+          src={content.hero_bg_image_url || "https://jigmhnzhixerlqesqayq.supabase.co/storage/v1/object/public/wine-images/homepage-hero.webp"}
           alt=""
           fill
           priority

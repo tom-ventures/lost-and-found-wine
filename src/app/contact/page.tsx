@@ -1,13 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import { createClient } from "@/lib/supabase/client";
+
+const DEFAULT_BG = "https://jigmhnzhixerlqesqayq.supabase.co/storage/v1/object/public/wine-images/contact-bg.webp";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [bgImage, setBgImage] = useState(DEFAULT_BG);
+
+  useEffect(() => {
+    async function loadBg() {
+      const supabase = createClient();
+      const { data } = await supabase
+        .from("site_content")
+        .select("value")
+        .eq("key", "contact_bg_image_url")
+        .single();
+      if (data?.value) setBgImage(data.value);
+    }
+    loadBg();
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -30,7 +47,7 @@ export default function ContactPage() {
   return (
     <div className="relative pt-32 pb-24 px-6">
       <Image
-        src="https://jigmhnzhixerlqesqayq.supabase.co/storage/v1/object/public/wine-images/contact-bg.webp"
+        src={bgImage}
         alt=""
         fill
         sizes="100vw"

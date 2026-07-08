@@ -80,6 +80,15 @@ export interface SiteContent {
   updated_at: string;
 }
 
+export interface Customer {
+  email: string;
+  name: string | null;
+  phone: string | null;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface CartItem {
   product_id: string;
   product_name: string;
