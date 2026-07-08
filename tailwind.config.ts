@@ -16,6 +16,9 @@ const config: Config = {
           muted: "#6b6b80",
           text: "#e8e8f0",
           white: "#ffffff",
+          slate: "#4f5c72",
+          cream: "#d7d0ca",
+          "cream-text": "#1e2024",
         },
       },
       fontFamily: {
