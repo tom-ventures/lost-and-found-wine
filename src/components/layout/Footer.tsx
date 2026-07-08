@@ -97,7 +97,7 @@ export default function Footer() {
             </a>
           </p>
           <p className="text-brand-muted text-xs whitespace-nowrap">
-            Copyright &copy;2016–2025 Best Wine Company Ltd
+            Copyright &copy;2016–2026 Best Wine Company Ltd
           </p>
         </div>
       </div>
